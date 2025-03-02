@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block pageheading %}
+menu
+    <p> Welcome to Wellington's finest cafe </p>
+{% endblock %}
+
+{% block main %}
+    <div class="products">
+        {% for coffee in list_of_coffees %}
+            <div class="product-box">
+                <h3 class = product-box-heading> {{ coffee[0] }} </h3>
+                <p class="product-box-info"> {{ coffee[1] }} </p>
+                <img src="static/images/{{ coffee[3] }}.jpg">
+                <p> <strong> Size: </strong> {{ coffee[4] }} </p>
+                <p> <strong> Price </strong> {{ coffee[5] }} </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
