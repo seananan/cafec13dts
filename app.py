@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import sqlite3
-from sqlite3 import ERROR
+from sqlite3 import Error
 
 DATABASE = "DB_FILE"
 
@@ -28,7 +28,7 @@ def render_homepage():  # put application's code here
 
 @app.route('/menu')
 def render_menu():
-    con = create_database(DATABASE)
+    con = connect_database(DATABASE)
     query = "SELECT name, description, volume, image, price FROM products"
     cur = con.cursor()
     cur.execute(query)
