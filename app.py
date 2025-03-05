@@ -26,12 +26,12 @@ def render_homepage():  # put application's code here
     return render_template('home.html')
 
 
-@app.route('/menu')
-def render_menu():
+@app.route('/menu/<cat_id>')
+def render_menu(cat_id):
     con = connect_database(DATABASE)
-    query = "SELECT name, description, volume, image, price FROM products"
+    query = "SELECT name, description, volume, image, price FROM products WHERE fk_cat_id = ?"
     cur = con.cursor()
-    cur.execute(query)
+    cur.execute(query, (cat_id,))
     product_list = cur.fetchall()
     print(product_list)
     con.close()
