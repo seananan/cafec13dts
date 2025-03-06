@@ -3,6 +3,12 @@
 {% block pageheading %}
 menu
     <p> Welcome to Wellington's finest cafe </p>
+    <div class="categories" >
+        {%  for cat in list_of_categories %}
+          <li> <a href = "/menu/{{ cat[0] }}"> {{  cat[1]}}</a> </li>
+        {% endfor %}
+
+    </div>
 {% endblock %}
 
 {% block main %}
@@ -11,9 +17,9 @@ menu
             <div class="product-box">
                 <h3 class = product-box-heading> {{ coffee[0] }} </h3>
                 <p class="product-box-info"> {{ coffee[1] }} </p>
-                <img src="static/images/{{ coffee[3] }}.jpg"c>
-                <p> <strong> Size: </strong> {{ coffee[4] }} </p>
-                <p> <strong> Price </strong> {{ coffee[5] }} </p>
+                <img src="/static/images/{{ coffee[3] }}.jpg">
+                <p> <strong> Size: </strong> {{ coffee[2] }} </p>
+                <p> <strong> Price: $</strong> {{ coffee[4] }} </p>
             </div>
         {% endfor %}
     </div>

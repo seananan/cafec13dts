@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import sqlite3
 from sqlite3 import Error
 
-DATABASE = "DB_FILE"
+DATABASE = "C:/Users/21236/PycharmProjects/cafec13dts/DB_FILE"
 
 app = Flask(__name__)
 
@@ -30,12 +30,16 @@ def render_homepage():  # put application's code here
 def render_menu(cat_id):
     con = connect_database(DATABASE)
     query = "SELECT name, description, volume, image, price FROM products WHERE fk_cat_id = ?"
+    query_cat_list = "SELECT * FROM category"
     cur = con.cursor()
     cur.execute(query, (cat_id,))
     product_list = cur.fetchall()
+    cur.execute(query_cat_list)
+    cat_list = cur.fetchall()
     print(product_list)
+    print(cat_list)
     con.close()
-    return render_template('menu.html', list_of_coffee=product_list)
+    return render_template('menu.html', list_of_coffee=product_list, list_of_categories=cat_list)
 
 
 if __name__ == '__main__':
