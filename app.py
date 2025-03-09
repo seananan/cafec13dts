@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import sqlite3
 from sqlite3 import Error
 
-DATABASE = "C:/Users/21236/PycharmProjects/cafec13dts/DB_FILE"
+DATABASE = "DB_FILE"
 
 app = Flask(__name__)
 
@@ -40,6 +40,18 @@ def render_menu(cat_id):
     print(cat_list)
     con.close()
     return render_template('menu.html', list_of_coffee=product_list, list_of_categories=cat_list)
+
+
+@app.route('/login')
+def render_login_page():  # put application's code here
+    return render_template('login.html')
+
+
+@app.route('/signup')
+def render_signup_page():  # put application's code here
+    return render_template('signup.html')
+
+
 
 
 if __name__ == '__main__':
